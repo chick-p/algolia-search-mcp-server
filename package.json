@@ -10,6 +10,8 @@
   "scripts": {
     "build": "pnpm run clean && tsc && shx chmod +x ./dist/index.js",
     "clean": "shx rm -rf ./dist/*",
+    "lint:biome": "biome check",
+    "fix:biome": "pnpm run lint:biome --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
