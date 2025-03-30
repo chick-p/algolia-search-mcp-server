@@ -1,0 +1,12 @@
+{
+  "name": "algolia-search-mcp-server",
+  "version": "0.0.1",
+  "description": "A MCP server for searching algolia index",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
