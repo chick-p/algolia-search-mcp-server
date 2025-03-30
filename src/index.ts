@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { AlgoliaSearchClient } from "./client.js";
-
 
 const applicationId = process.env.ALGOLIA_APPLICATION_ID;
 const searchApiKey = process.env.ALGOLIA_SEARCH_API_KEY;
@@ -27,19 +26,14 @@ if (!indexName) {
 
 const server = new McpServer({
   name: "algolia-search-server",
-  version: "0.0.1"
+  version: "0.0.1",
 });
-
 
 server.tool(
   "search_index",
   "Search query from Algolia index",
   {
-    q: z
-      .string()
-      .optional()
-      .default("")
-      .describe(`Query string`),
+    q: z.string().optional().default("").describe("Query string"),
   },
   async ({ q }) => {
     const client = new AlgoliaSearchClient({
@@ -47,7 +41,7 @@ server.tool(
       searchApiKey,
       indexName,
     });
-    const response = await client.searchByQuery({query: q});
+    const response = await client.searchByQuery({ query: q });
 
     return {
       content: [
@@ -57,7 +51,7 @@ server.tool(
         },
       ],
     };
-  }
+  },
 );
 
 const transport = new StdioServerTransport();
