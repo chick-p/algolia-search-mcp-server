@@ -49,9 +49,8 @@ This package is installed as local.
       {
         "chat.mcp.discovery.enabled": true,
         "mcp": {
-            "inputs": [],
             "servers": {
-                "mcp-server-time": {
+                "algolia-search-server: {
                     "command": "algolia-search-server",
                     "env": {
                       "ALGOLIA_APPLICATION_ID": "<YOUR_ALGOLIA_APPLICATION_ID>",
