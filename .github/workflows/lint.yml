@@ -1,0 +1,39 @@
+name: lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ./.node-version
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --shamefully-hoist
+        env:
+          CI: true
+
+      - name: Run lint
+        run: pnpm run lint:biome
