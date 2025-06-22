@@ -1,5 +1,8 @@
 # Algolia Search MCP Server
 
+This repository have been archived.
+The Official server is released at [Algolia Node.js MCP](https://github.com/algolia/mcp-node).
+
 ## Features
 
 - Search for any text in your Algolia index
